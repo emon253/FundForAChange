@@ -4,16 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 public class Event {
 
 	@Id
+	
 	private String eventId;
 	private String eventName;
 	private String description;
 	private String place;
 	private double targetAmount;
 	private double receivedAmount;
+	@ColumnDefault("Pending")
 	private String states;
 	
 	@ManyToOne
