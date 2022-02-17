@@ -1,6 +1,7 @@
 package com.fund_for_change.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,6 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public void deleteEvent(Event event) {
-
 		repository.delete(event);
 	}
 
@@ -51,5 +51,16 @@ public class EventServiceImpl implements EventService {
 
 	private Event convertToEvent(EventDTO eventDTO) {
 		return new Event(null,eventDTO.getEventName(), eventDTO.getEventDescriction(), eventDTO.getEventLocation(), eventDTO.getTargetAmount(), 0, null,null);
+	}
+
+	@Override
+	public List<Event> getPendingEvents() {
+		
+		return  repository.findAll().stream().filter(event -> event.getStates().equals("Pending")).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Event> getAcceptedEvents() {
+		return  repository.findAll().stream().filter(event -> event.getStates().equals("Accepted")).collect(Collectors.toList());
 	}
 }

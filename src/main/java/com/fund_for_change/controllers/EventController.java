@@ -40,7 +40,24 @@ public class EventController {
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-
+	
+	@GetMapping("pending-events")
+	public ResponseEntity<List<Event>> getAllPendingEvents() {
+		List<Event> events = service.getPendingEvents();
+		if (!events.isEmpty()) {
+			return new ResponseEntity<>(events, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("accepted-events")
+	public ResponseEntity<List<Event>> getAllAcceptedEvents() {
+		List<Event> events = service.getAcceptedEvents();
+		if (!events.isEmpty()) {
+			return new ResponseEntity<>(events, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 	@GetMapping("event/{id}")
 	public ResponseEntity<Event> getEventByID(@RequestParam String id) {
 		try {

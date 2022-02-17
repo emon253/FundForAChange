@@ -1,7 +1,9 @@
 package com.fund_for_change.domain;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -13,9 +15,9 @@ public class Donation {
 	private String transectionService;
 	private String amount;
 	//private Timestamp timestamp;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
 	private User user;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
 	private Event event;
 	
 	public Donation() {

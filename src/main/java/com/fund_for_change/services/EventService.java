@@ -12,7 +12,11 @@ public interface EventService {
 	public Event saveEvent(EventDTO eventDto);
 
 	public List<Event> getEvents();
-	
+
+	public List<Event> getPendingEvents();
+
+	public List<Event> getAcceptedEvents();
+
 	public Event getEventById(String id);
 
 	public Event updateEvent(Event event);

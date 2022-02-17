@@ -1,26 +1,35 @@
 package com.fund_for_change.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Event {
 
 	@Id
-	
 	private String eventId;
-	private String eventName;
-	private String description;
-	private String place;
-	private double targetAmount;
-	private double receivedAmount;
-	@ColumnDefault("Pending")
-	private String states;
 	
-	@ManyToOne
+	private String eventName;
+	
+	private String description;
+	
+	private String place;
+	
+	private double targetAmount;
+	
+	private double receivedAmount;
+	
+	private String status;
+	
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private User user;
 	
 	public Event() {
@@ -30,14 +39,14 @@ public class Event {
 
 
 	public Event(String eventId, String eventName, String description, String place, double targetAmount,
-			double receivedAmount, String states, User user) {
+			double receivedAmount, String status, User user) {
 		this.eventId = eventId;
 		this.eventName = eventName;
 		this.description = description;
 		this.place = place;
 		this.targetAmount = targetAmount;
 		this.receivedAmount = receivedAmount;
-		this.states = states;
+		this.status = status;
 		this.user = user;
 	}
 
@@ -102,13 +111,13 @@ public class Event {
 
 
 	public String getStates() {
-		return states;
+		return status;
 	}
 
 
 
-	public void setStates(String states) {
-		this.states = states;
+	public void setStates(String status) {
+		this.status = status;
 	}
 	
 	

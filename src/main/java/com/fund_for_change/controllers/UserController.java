@@ -39,10 +39,11 @@ public class UserController {
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers() {
 		List<User> users = service.getUsers();
+		System.out.println(users);
 		if (users.size() <= 0) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		} else {
-			return ResponseEntity.of(Optional.of(users));
+			return new ResponseEntity<>(users, HttpStatus.OK);
 		}
 
 	}
