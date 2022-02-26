@@ -9,23 +9,32 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class User {
 
 	@Id
 	private String userId;
+	
 	private String userName;
+	
 	private String fullName;
+	
 	private String userEmail;
+	
 	private Long userPhone;
+	
 	private String role;
+	
 	private String password;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Donation> donations;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Event> events;
 
 	

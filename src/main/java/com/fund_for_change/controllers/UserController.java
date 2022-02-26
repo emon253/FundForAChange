@@ -26,13 +26,11 @@ public class UserController {
 	// Insert user
 	@PostMapping("/addUser")
 	public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO) {
-
 		try {
 			return new ResponseEntity<>(this.service.saveUser(userDTO), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
 	}
 
 	// get all users

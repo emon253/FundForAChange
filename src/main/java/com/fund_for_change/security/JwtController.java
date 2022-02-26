@@ -28,7 +28,7 @@ public class JwtController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-	@PostMapping("token")
+	@PostMapping("login")
 	public ResponseEntity<?> generateToken(@RequestBody JwtRequest request) {
 		try {
 			this.authenticationManager.authenticate(

@@ -8,9 +8,14 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+
 public class Event {
 
 	@Id
@@ -28,8 +33,8 @@ public class Event {
 	
 	private String status;
 	
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class)
 	private User user;
 	
 	public Event() {

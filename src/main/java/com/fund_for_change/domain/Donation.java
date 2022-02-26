@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Donation {
 
@@ -15,9 +17,12 @@ public class Donation {
 	private String transectionService;
 	private String amount;
 	//private Timestamp timestamp;
-	@ManyToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
-	@ManyToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+	
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Event event;
 	
 	public Donation() {
