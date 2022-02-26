@@ -2,17 +2,12 @@ package com.fund_for_change.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ColumnDefault;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 @Entity
 
@@ -34,11 +29,11 @@ public class Event {
 	private String status;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class)
+	@JsonManagedReference
 	private User user;
 	
 	public Event() {
-		
+		 
 	}
 
 
